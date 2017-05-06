@@ -24,7 +24,7 @@ public class LotteryRunner {
 
         System.out.printf("%s: %d thread(s) took %d seconds, time per 1 million tries %.3f\n\n", lottery.getName(),
                 numThreads, timeTakenSeconds, timePerOneMillionTries);
-        
+
         return timePerOneMillionTries;
     }
 

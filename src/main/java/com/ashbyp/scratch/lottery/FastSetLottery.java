@@ -13,12 +13,12 @@ public class FastSetLottery extends AbstractLottery<Set<Integer>> {
     }
 
     @Override
-    Set<Integer> createAllNumbers(int highNumber) {
+    public Set<Integer> createAllNumbers(int highNumber) {
         return IntStream.range(1, highNumber + 1).boxed().collect(Collectors.toSet());
     }
 
     @Override
-    Set<Integer> drawNumbers(Set<Integer> allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
+    public Set<Integer> drawNumbers(Set<Integer> allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
         Set<Integer> picked = new HashSet<>();
         Set<Integer> used = new HashSet<>();
         Integer[] all = allNumbers.toArray(new Integer[1]);
@@ -33,12 +33,13 @@ public class FastSetLottery extends AbstractLottery<Set<Integer>> {
     }
 
     @Override
-    List<Set<Integer>> pickTickets(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
+    public List<Set<Integer>> pickTickets(int highNumber, int numbersPerTicket, int numTickets,
+            RandomNumberProvider rn) {
         return Utils.pickTickets(highNumber, numbersPerTicket, numTickets, rn);
     }
 
     @Override
-    boolean match(Set<Integer> numbersDrawn, List<Set<Integer>> tickets) {
+    public boolean match(Set<Integer> numbersDrawn, List<Set<Integer>> tickets) {
         for (Set<Integer> ticket : tickets) {
             if (ticket.equals(numbersDrawn)) {
                 return true;
@@ -48,7 +49,7 @@ public class FastSetLottery extends AbstractLottery<Set<Integer>> {
     }
 
     @Override
-    String format(Set<Integer> tickets) {
+    public String format(Set<Integer> tickets) {
         return tickets.toString();
     }
 }

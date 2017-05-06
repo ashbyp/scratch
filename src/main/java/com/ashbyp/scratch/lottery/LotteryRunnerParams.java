@@ -29,7 +29,7 @@ public class LotteryRunnerParams {
     private int ticketCost;
     @JsonProperty("games_per_year")
     private int gamesPerYear;
-    
+
     public int getTicketCost() {
         return ticketCost;
     }

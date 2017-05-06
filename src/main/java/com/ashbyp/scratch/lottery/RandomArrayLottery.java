@@ -14,12 +14,12 @@ public class RandomArrayLottery extends AbstractLottery<int[]> {
     }
 
     @Override
-    int[] createAllNumbers(int highNumber) {
+    public int[] createAllNumbers(int highNumber) {
         return IntStream.range(1, highNumber + 1).toArray();
     }
 
     @Override
-    int[] drawNumbers(int[] allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
+    public int[] drawNumbers(int[] allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
         int[] picked = new int[numbersPerTicket];
         Set<Integer> used = new HashSet<>();
         while (used.size() < numbersPerTicket) {
@@ -34,13 +34,13 @@ public class RandomArrayLottery extends AbstractLottery<int[]> {
     }
 
     @Override
-    List<int[]> pickTickets(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
+    public List<int[]> pickTickets(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
         List<Set<Integer>> tickets = Utils.pickTickets(highNumber, numbersPerTicket, numTickets, rn);
         return tickets.stream().map(Utils::setToSortedIntArray).collect(Collectors.toList());
     }
 
     @Override
-    boolean match(int[] numbersDrawn, List<int[]> tickets) {
+    public boolean match(int[] numbersDrawn, List<int[]> tickets) {
         for (int[] ticket : tickets) {
             if (Arrays.equals(numbersDrawn, ticket)) {
                 return true;
@@ -50,7 +50,7 @@ public class RandomArrayLottery extends AbstractLottery<int[]> {
     }
 
     @Override
-    String format(int[] tickets) {
+    public String format(int[] tickets) {
         return Arrays.toString(tickets);
     }
 }

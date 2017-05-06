@@ -15,12 +15,12 @@ public class ShuffleSetLottery extends AbstractLottery<Set<Integer>> {
     }
 
     @Override
-    Set<Integer> createAllNumbers(int highNumber) {
+    public Set<Integer> createAllNumbers(int highNumber) {
         return IntStream.range(1, highNumber + 1).boxed().collect(Collectors.toSet());
     }
 
     @Override
-    Set<Integer> drawNumbers(Set<Integer> allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
+    public Set<Integer> drawNumbers(Set<Integer> allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
         List<Integer> copy = new ArrayList<>();
         copy.addAll(allNumbers);
         Collections.shuffle(copy, rn);
@@ -28,17 +28,18 @@ public class ShuffleSetLottery extends AbstractLottery<Set<Integer>> {
     }
 
     @Override
-    List<Set<Integer>> pickTickets(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
+    public List<Set<Integer>> pickTickets(int highNumber, int numbersPerTicket, int numTickets,
+            RandomNumberProvider rn) {
         return Utils.pickTickets(highNumber, numbersPerTicket, numTickets, rn);
     }
 
     @Override
-    String format(Set<Integer> tickets) {
+    public String format(Set<Integer> tickets) {
         return tickets.toString();
     }
 
     @Override
-    boolean match(Set<Integer> numbersDrawn, List<Set<Integer>> tickets) {
+    public boolean match(Set<Integer> numbersDrawn, List<Set<Integer>> tickets) {
         for (Set<Integer> ticket : tickets) {
             if (ticket.equals(numbersDrawn)) {
                 return true;

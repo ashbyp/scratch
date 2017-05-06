@@ -11,17 +11,17 @@ public abstract class AbstractLottery<T> {
     private final T allNumbers;
     private final List<T> tickets;
 
-    abstract T createAllNumbers(int highNumber);
+    public abstract T createAllNumbers(int highNumber);
 
-    abstract T drawNumbers(T allNumbers, int numbersPerTicket, RandomNumberProvider rn);
+    public abstract T drawNumbers(T allNumbers, int numbersPerTicket, RandomNumberProvider rn);
 
-    abstract List<T> pickTickets(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn);
+    public abstract List<T> pickTickets(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn);
 
-    abstract boolean match(T numbersDrawn, List<T> tickets);
+    public abstract boolean match(T numbersDrawn, List<T> tickets);
 
-    abstract String format(T ticket);
+    public abstract String format(T ticket);
 
-    protected String getName() {
+    public String getName() {
         return getClass().getSimpleName();
     }
 
