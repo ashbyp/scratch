@@ -1,6 +1,6 @@
 high_num : 59
 num_picks : 6
-num_tickets : 1
+num_tickets : 10
 num_threads : 1
 num_tests : 10
 seeded_tickets : true
