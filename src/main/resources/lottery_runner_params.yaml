@@ -8,11 +8,11 @@ seeded_numbers : true
 ticket_cost : 2
 games_per_year : 104
 random_classes :
-#  - java.util.SplittableRandom
+  - java.util.SplittableRandom
   - java.util.Random
 lotteries:
   - com.ashbyp.scratch.lottery.RandomArrayLottery
-#  - com.ashbyp.scratch.lottery.FastRandomArrayLottery
-#  - com.ashbyp.scratch.lottery.InsertionSortArrayLottery
-#  - com.ashbyp.scratch.lottery.ShuffleSetLottery
-#  - com.ashbyp.scratch.lottery.ShuffleListLottery
+  - com.ashbyp.scratch.lottery.FastRandomArrayLottery
+  - com.ashbyp.scratch.lottery.InsertionSortArrayLottery
+  - com.ashbyp.scratch.lottery.ShuffleSetLottery
+  - com.ashbyp.scratch.lottery.ShuffleListLottery
