@@ -1,14 +1,14 @@
-high_num : 59
+high_num : 49
 num_picks : 6
-num_tickets : 10
 num_threads : 1
 num_tests : 10
+num_tickets : 1
 seeded_tickets : true
 seeded_numbers : true
 ticket_cost : 2
 games_per_year : 104
 random_classes :
-  - java.util.SplittableRandom
+#  - java.util.SplittableRandom
   - java.util.Random
 lotteries:
   - com.ashbyp.scratch.lottery.RandomArrayLottery
@@ -16,3 +16,4 @@ lotteries:
   - com.ashbyp.scratch.lottery.InsertionSortArrayLottery
   - com.ashbyp.scratch.lottery.ShuffleSetLottery
   - com.ashbyp.scratch.lottery.ShuffleListLottery
+  - com.ashbyp.scratch.lottery.FastSetLottery
