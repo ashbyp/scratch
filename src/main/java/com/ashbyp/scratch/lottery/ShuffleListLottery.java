@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ShuffleListLottery extends AbstractLottery<List<Integer>> {
+public class ShuffleListLottery extends CommonTypeLottery<List<Integer>> {
 
     private final boolean COPY_LIST = true;
 
@@ -51,8 +51,8 @@ public class ShuffleListLottery extends AbstractLottery<List<Integer>> {
     }
 
     @Override
-    public String format(List<Integer> tickets) {
-        return tickets.toString();
+    public String format(List<Integer> t) {
+        return t.toString();
     }
 
 }

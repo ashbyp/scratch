@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class InsertionSortArrayLottery extends AbstractLottery<int[]> {
+public class InsertionSortArrayLottery extends CommonTypeLottery<int[]> {
 
     public InsertionSortArrayLottery(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
         super(highNumber, numbersPerTicket, numTickets, rn);
@@ -49,7 +49,7 @@ public class InsertionSortArrayLottery extends AbstractLottery<int[]> {
     }
 
     @Override
-    public String format(int[] tickets) {
-        return Arrays.toString(tickets);
+    public String format(int[] t) {
+        return Arrays.toString(t);
     }
 }

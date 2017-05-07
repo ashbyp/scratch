@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class LotteryRunner {
-    private static double run(ExecutorService executor, AbstractLottery<?> lottery, int numThreads, int numTests,
+    private static double run(ExecutorService executor, AbstractLottery<?, ?> lottery, int numThreads, int numTests,
             RandomNumberProvider rn, int ticketCost, int gamesPerYear) throws Exception {
 
         System.out.printf("Will run %d tests with %d threads\n", numTests, numThreads);
@@ -49,7 +49,7 @@ public class LotteryRunner {
 
                 Class<?>[] argTypes = { int.class, int.class, int.class, RandomNumberProvider.class };
                 Constructor<?> c = Class.forName(lotteryClass).getDeclaredConstructor(argTypes);
-                AbstractLottery<?> l = (AbstractLottery<?>) c.newInstance(params.getHighNum(), params.getNumPicks(),
+                AbstractLottery<?, ?> l = (AbstractLottery<?, ?>) c.newInstance(params.getHighNum(), params.getNumPicks(),
                         params.getNumTickets(), ticketRand);
                 timeMap.put(String.format("%-25s %-15s\t", l.getName(), ticketRand.getName()),
                         run(executor, l, params.getNumThreads(), params.getNumTests(), numberRand,

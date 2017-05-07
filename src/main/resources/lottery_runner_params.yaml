@@ -1,7 +1,7 @@
 high_num : 49
 num_picks : 6
 num_threads : 1
-num_tests : 10
+num_tests : 3
 num_tickets : 1
 seeded_tickets : true
 seeded_numbers : true
@@ -17,3 +17,5 @@ lotteries:
   - com.ashbyp.scratch.lottery.ShuffleSetLottery
   - com.ashbyp.scratch.lottery.ShuffleListLottery
   - com.ashbyp.scratch.lottery.FastSetLottery
+  - com.ashbyp.scratch.lottery.TroveSetLottery
+  

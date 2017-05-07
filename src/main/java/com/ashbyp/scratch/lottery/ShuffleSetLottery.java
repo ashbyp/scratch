@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ShuffleSetLottery extends AbstractLottery<Set<Integer>> {
+public class ShuffleSetLottery extends CommonTypeLottery<Set<Integer>> {
 
     public ShuffleSetLottery(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
         super(highNumber, numbersPerTicket, numTickets, rn);
@@ -34,8 +34,8 @@ public class ShuffleSetLottery extends AbstractLottery<Set<Integer>> {
     }
 
     @Override
-    public String format(Set<Integer> tickets) {
-        return tickets.toString();
+    public String format(Set<Integer> t) {
+        return t.toString();
     }
 
     @Override

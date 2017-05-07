@@ -1,26 +1,27 @@
 package com.ashbyp.scratch.lottery;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.IntStream;
 
-public class FastSetLottery extends AbstractLottery<int[], Set<Integer>> {
+import gnu.trove.set.TIntSet;
+import gnu.trove.set.hash.TIntHashSet;
 
-    public FastSetLottery(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
+public class TroveSetLottery extends AbstractLottery<int[], TIntSet> {
+
+    public TroveSetLottery(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
         super(highNumber, numbersPerTicket, numTickets, rn);
     }
 
     @Override
-    public int[] createAllNumbers(int highNumber) {
+    public  int[] createAllNumbers(int highNumber) {
         return IntStream.range(1, highNumber + 1).toArray();
     }
 
     @Override
-    public Set<Integer> drawNumbers(int[] allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
-        Set<Integer> picked = new HashSet<>();
-        Set<Integer> used = new HashSet<>();
+    public TIntSet drawNumbers(int[] allNumbers, int numbersPerTicket, RandomNumberProvider rn) {
+        TIntSet picked = new TIntHashSet();
+        TIntSet used = new TIntHashSet();
         while (used.size() < numbersPerTicket) {
             int slot = rn.nextInt(allNumbers.length);
             if (!used.contains(slot)) {
@@ -32,14 +33,14 @@ public class FastSetLottery extends AbstractLottery<int[], Set<Integer>> {
     }
 
     @Override
-    public List<Set<Integer>> pickTickets(int highNumber, int numbersPerTicket, int numTickets,
+    public List<TIntSet> pickTickets(int highNumber, int numbersPerTicket, int numTickets,
             RandomNumberProvider rn) {
-        return Utils.pickTickets(highNumber, numbersPerTicket, numTickets, rn);
+        return Utils.pickTicketsTrove(highNumber, numbersPerTicket, numTickets, rn);
     }
 
     @Override
-    public boolean match(Set<Integer> numbersDrawn, List<Set<Integer>> tickets) {
-        for (Set<Integer> ticket : tickets) {
+    public boolean match(TIntSet numbersDrawn, List<TIntSet> tickets) {
+        for (TIntSet ticket : tickets) {
             if (ticket.equals(numbersDrawn)) {
                 return true;
             }
@@ -48,7 +49,7 @@ public class FastSetLottery extends AbstractLottery<int[], Set<Integer>> {
     }
 
     @Override
-    public String formatTicket(Set<Integer> ticket) {
+    public String formatTicket(TIntSet ticket) {
         return ticket.toString();
     }
 

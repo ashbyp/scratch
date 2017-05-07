@@ -16,6 +16,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import gnu.trove.set.TIntSet;
+import gnu.trove.set.hash.TIntHashSet;
+
 public class Utils {
     private static BigInteger fact(BigInteger n) {
         if (n.equals(BigInteger.valueOf(0))) {
@@ -72,6 +75,19 @@ public class Utils {
         List<Set<Integer>> tickets = new ArrayList<>();
         for (int i = 0; i < numTickets; i++) {
             Set<Integer> ticket = new HashSet<>();
+            while (ticket.size() < numbersPerTicket) {
+                ticket.add(rn.nextInt(highNumber) + 1);
+            }
+            tickets.add(ticket);
+        }
+        return tickets;
+    }
+
+    public static List<TIntSet> pickTicketsTrove(int highNumber, int numbersPerTicket, int numTickets,
+            RandomNumberProvider rn) {
+        List<TIntSet> tickets = new ArrayList<>();
+        for (int i = 0; i < numTickets; i++) {
+            TIntSet ticket = new TIntHashSet();
             while (ticket.size() < numbersPerTicket) {
                 ticket.add(rn.nextInt(highNumber) + 1);
             }

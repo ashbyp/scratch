@@ -5,21 +5,23 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-public abstract class AbstractLottery<T> {
+public abstract class AbstractLottery<N, T> {
     private final int numbersPerTicket;
     private final int numTickets;
-    private final T allNumbers;
+    private final N allNumbers;
     private final List<T> tickets;
 
-    public abstract T createAllNumbers(int highNumber);
+    public abstract N createAllNumbers(int highNumber);
 
-    public abstract T drawNumbers(T allNumbers, int numbersPerTicket, RandomNumberProvider rn);
+    public abstract T drawNumbers(N allNumbers, int numbersPerTicket, RandomNumberProvider rn);
 
     public abstract List<T> pickTickets(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn);
 
     public abstract boolean match(T numbersDrawn, List<T> tickets);
 
-    public abstract String format(T ticket);
+    public abstract String formatTicket(T ticket);
+
+    public abstract String formatNumbers(N numbers);
 
     public String getName() {
         return getClass().getSimpleName();
@@ -28,13 +30,12 @@ public abstract class AbstractLottery<T> {
     public AbstractLottery(int highNumber, int numbersPerTicket, int numTickets, RandomNumberProvider rn) {
         System.out.printf("Running %s (%s) +++++++++++++++++++++\n", getName(), rn.getName());
 
-        this.createAllNumbers(highNumber);
         this.numbersPerTicket = numbersPerTicket;
         this.numTickets = numTickets;
         this.allNumbers = createAllNumbers(highNumber);
         this.tickets = pickTickets(highNumber, this.numbersPerTicket, this.numTickets, rn);
 
-        System.out.println("Numbers are  " + format(allNumbers));
+        System.out.println("Numbers are  " + formatNumbers(allNumbers));
         System.out.println("Selection is " + format(tickets));
         System.out.printf("There are %,d ways to choose %d from %d\n", Utils.combinations(highNumber, numbersPerTicket),
                 numbersPerTicket, highNumber);
@@ -89,7 +90,7 @@ public abstract class AbstractLottery<T> {
         for (T ticket : tickets) {
             if (sb.length() > 0)
                 sb.append(", ");
-            sb.append(format(ticket));
+            sb.append(formatTicket(ticket));
         }
         return sb.toString();
     }
