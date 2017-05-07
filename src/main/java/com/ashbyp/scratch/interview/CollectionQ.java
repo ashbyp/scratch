@@ -125,8 +125,11 @@ public class CollectionQ {
         return new ArrayList<T>(input.stream().filter(x -> counts.get(x) == m).collect(Collectors.toSet()));
     }
 
-    public static <T> long timeit(Function<List<T>, List<T>> f, List<T> input, int samples) {
+    public static <T> long timeit(Function<List<T>, List<T>> f, List<T> input, int samples, List<T> expected) {
         long startTime = System.currentTimeMillis();
+       if (!new HashSet<>(f.apply(input)).equals(new HashSet<>(expected))) {
+            return 0;
+        }
         for (int i = 0; i < samples; i++) {
             f.apply(input);
         }
@@ -135,26 +138,18 @@ public class CollectionQ {
 
     public static void main(String[] args) {
         List<String> l = Arrays.asList("B", "A", "B", "Z", "Z", "K", "H", "H");
-        System.out.println("1: " + maxOccurancesOf_1(l));
-        System.out.println("2: " + maxOccurancesOf_2(l));
-        System.out.println("3: " + maxOccurancesOf_3(l));
-        System.out.println("4: " + maxOccurancesOf_4(l));
-        System.out.println("5: " + maxOccurancesOf_5(l));
-        System.out.println("6: " + maxOccurancesOf_6(l));
-        System.out.println("7: " + maxOccurancesOf_7(l));
-        System.out.println("8: " + maxOccurancesOf_8(l));
-        System.out.println("8: " + maxOccurancesOf_9(l));
-
+        List<String> e = Arrays.asList("B", "Z", "H");
+        
         int samples = 1000000;
 
-        System.out.println("1: " + timeit(CollectionQ::maxOccurancesOf_1, l, samples));
-        System.out.println("2: " + timeit(CollectionQ::maxOccurancesOf_2, l, samples));
-        System.out.println("3: " + timeit(CollectionQ::maxOccurancesOf_3, l, samples));
-        System.out.println("4: " + timeit(CollectionQ::maxOccurancesOf_4, l, samples));
-        System.out.println("5: " + timeit(CollectionQ::maxOccurancesOf_5, l, samples));
-        System.out.println("6: " + timeit(CollectionQ::maxOccurancesOf_6, l, samples));
-        System.out.println("7: " + timeit(CollectionQ::maxOccurancesOf_7, l, samples));
-        System.out.println("8: " + timeit(CollectionQ::maxOccurancesOf_8, l, samples));
-        System.out.println("8: " + timeit(CollectionQ::maxOccurancesOf_9, l, samples));
+        System.out.println("1: " + timeit(CollectionQ::maxOccurancesOf_1, l, samples, e));
+        System.out.println("2: " + timeit(CollectionQ::maxOccurancesOf_2, l, samples, e));
+        System.out.println("3: " + timeit(CollectionQ::maxOccurancesOf_3, l, samples, e));
+        System.out.println("4: " + timeit(CollectionQ::maxOccurancesOf_4, l, samples, e));
+        System.out.println("5: " + timeit(CollectionQ::maxOccurancesOf_5, l, samples, e));
+        System.out.println("6: " + timeit(CollectionQ::maxOccurancesOf_6, l, samples, e));
+        System.out.println("7: " + timeit(CollectionQ::maxOccurancesOf_7, l, samples, e));
+        System.out.println("8: " + timeit(CollectionQ::maxOccurancesOf_8, l, samples, e));
+        System.out.println("9: " + timeit(CollectionQ::maxOccurancesOf_9, l, samples, e));
     }
 }
