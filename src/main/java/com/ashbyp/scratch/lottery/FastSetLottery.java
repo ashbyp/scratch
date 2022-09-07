@@ -39,12 +39,14 @@ public class FastSetLottery extends AbstractLottery<int[], Set<Integer>> {
 
     @Override
     public boolean match(Set<Integer> numbersDrawn, List<Set<Integer>> tickets) {
-        for (Set<Integer> ticket : tickets) {
-            if (ticket.equals(numbersDrawn)) {
-                return true;
-            }
-        }
-        return false;
+        return tickets.stream().anyMatch(x -> numbersDrawn.equals(x));
+        
+//        for (Set<Integer> ticket : tickets) {
+//            if (ticket.equals(numbersDrawn)) {
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     @Override

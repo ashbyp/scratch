@@ -31,6 +31,7 @@ public class FastRandomArrayLottery extends CommonTypeLottery<int[]> {
                 used.add(slot);
             }
         }
+        // zap
         Arrays.sort(picked);
         return picked;
     }
