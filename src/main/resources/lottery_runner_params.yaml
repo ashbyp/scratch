@@ -1,7 +1,7 @@
-high_num : 49
+high_num : 59
 num_picks : 6
 num_threads : 1
-num_tests : 3
+num_tests : 100
 num_tickets : 1
 seeded_tickets : true
 seeded_numbers : true
@@ -12,10 +12,10 @@ random_classes :
   - java.util.Random
 lotteries:
   - com.ashbyp.scratch.lottery.RandomArrayLottery
-  - com.ashbyp.scratch.lottery.FastRandomArrayLottery
-  - com.ashbyp.scratch.lottery.InsertionSortArrayLottery
-  - com.ashbyp.scratch.lottery.ShuffleSetLottery
-  - com.ashbyp.scratch.lottery.ShuffleListLottery
-  - com.ashbyp.scratch.lottery.FastSetLottery
-  - com.ashbyp.scratch.lottery.TroveSetLottery
-  
+#  - com.ashbyp.scratch.lottery.FastRandomArrayLottery
+#  - com.ashbyp.scratch.lottery.InsertionSortArrayLottery
+#  - com.ashbyp.scratch.lottery.ShuffleSetLottery
+#  - com.ashbyp.scratch.lottery.ShuffleListLottery
+#  - com.ashbyp.scratch.lottery.FastSetLottery
+#  - com.ashbyp.scratch.lottery.TroveSetLottery
+#
